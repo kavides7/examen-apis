@@ -6,13 +6,10 @@ exports.create = (req, res) => {
 
     try {
         usuario.nombre = req.body.nombre;
-        usuario.apellido = req.body.apellido;
         usuario.email = req.body.email;
-        usuario.telefono = req.body.telefono;
-        usuario.direccion = req.body.direccion;
+        usuario.contraseña = req.body.contraseña;
         usuario.fecha_ingreso = req.body.fecha_ingreso;
-        usuario.estado = req.body.estado;
-
+    
         Usuario.create(usuario).then(result => {
             res.status(200).json({
                 message: "Usuario creado exitosamente con id = " + result.id_usuario,
@@ -76,12 +73,10 @@ exports.updateById = async (req, res) => {
         } else {    
             let updatedObject = {
                 nombre: req.body.nombre,
-                apellido: req.body.apellido,
                 email: req.body.primer_apellid,  
-                telefono: req.body.telefono,
-                direccion: req.body.direccion,
+                contraseña: req.body.contraseña,
                 fecha_ingreso: req.body.fecha_ingreso,
-                estado: req.body.estado
+               
             }
             let result = await Usuario.update(updatedObject, {returning: true, where: {id_usuario: usuarioId}});
             
